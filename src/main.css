@@ -1,0 +1,25 @@
+html,body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #262626;
+  font-family: Papyrus, phantasy, sans-serif;
+  display: grid;
+  place-content: center;
+}
+
+* {
+  transition: all ease 1s;
+}
+
+canvas {
+  image-rendering: pixelated;
+}
+
+.renderer {
+  width: 1056px;
+  height: 640px;
+}
