@@ -73,7 +73,13 @@ export class Enemy {
     this.attackCycle -= dt;
 
     const isWithinRange = gameState.state.playerPosition.y === this.sprite.currentLevel && Math.abs(gameState.state.playerPosition.x - this.sprite.x) < 8;
+    /**
+     * @type {(Skeleton|undefined)}
+     */
     let targetSkeleton = undefined;
+    /**
+     * @type {(Barricade|undefined)}
+     */
     let targetBarricade = undefined;
     [
       ...gameState.state.area[MapArea.ELYSIUM].objects,

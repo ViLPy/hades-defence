@@ -10,7 +10,7 @@ export class Barricade {
     this.x = x;
     this.y = y;
     this.level = Math.round((this.y - 16 * 3) / (16 * 5));
-    this.base = new Sprite(['ob-i1-c'], x, y);
+    this.spr = new Sprite(['ob-i1-c'], x, y);
     this.hp = 10;
     this.maxHp = this.hp;
 
@@ -42,7 +42,7 @@ export class Barricade {
   }
 
   render(dt) {
-    this.base.render(dt);
+    this.spr.render(dt);
 
     for (let i = 0; i < this.upgradeLevel - 1; i++) {
       const sx = this.x + 8 + upgradeMarkers[i][0];

@@ -36,15 +36,15 @@ export const Tiles = {
     },
     {
       id: 2,
-      basePrice: 0.2,
-      mood: 1,
-      value: 1,
+      basePrice: 0.1,
+      mood: 0.5,
+      value: 0.5,
     },
     {
       id: 3,
-      basePrice: 0.3,
-      mood: 1.5,
-      value: 1.5,
+      basePrice: 0.1,
+      mood: 0.5,
+      value: 0.5,
     }
   ],
   FLOORS: [
@@ -62,15 +62,15 @@ export const Tiles = {
     },
     {
       id: 2,
-      basePrice: 0.2,
-      mood: 1,
-      value: 1,
+      basePrice: 0.1,
+      mood: 0.5,
+      value: 0.5,
     },
     {
       id: 3,
-      basePrice: 0.3,
-      mood: 1.5,
-      value: 1.5,
+      basePrice: 0.1,
+      mood: 0.5,
+      value: 0.5,
     }
   ]
 };
@@ -89,7 +89,7 @@ export const Objects = [
     id: 1,
     name: 'Barricade',
     description: 'Can block enemies. Each upgrade increases durability\nCheap and sturdy',
-    cost: 2,
+    cost: 3,
     upgradeCost: 15,
     mood: 0,
     value: 10,
@@ -98,7 +98,7 @@ export const Objects = [
     id: 2,
     name: 'Grave',
     description: 'Spawns skeletons who can block and attack enemies\nEach upgrade adds skeleton and increases their health\nDestroyed skeletons respawn over time',
-    cost: 10,
+    cost: 12,
     upgradeCost: 10,
     mood: 10,
     value: 30,
@@ -109,7 +109,7 @@ export const Objects = [
     name: 'Potion station',
     description: 'Automatically heals you and skeletons around',
     upgradeCost: 30,
-    cost: 20,
+    cost: 30,
     mood: 20,
     value: 10,
     ctor: HPUp
@@ -117,7 +117,7 @@ export const Objects = [
   {
     id: 4,
     name: 'Wall light',
-    description: 'Improves overall mood',
+    description: 'Improves overall mood and adds some value',
     cost: 5,
     mood: 30,
     value: 5,
@@ -126,7 +126,7 @@ export const Objects = [
   {
     id: 5,
     name: 'Chandelier',
-    description: 'Improves overall mood',
+    description: 'Improves overall mood and adds some value',
     cost: 15,
     mood: 10,
     value: 80,
@@ -166,10 +166,10 @@ export const Objects = [
     id: 900,
     isArcadian: true,
     name: 'Arcadian NFT',
-    description: 'Improves overall mood and adds some value. ID can be selected',
-    cost: 15,
-    mood: 50,
-    value: 50,
+    description: 'Improves overall mood and adds some value.\nID can be selected',
+    cost: 10,
+    mood: 40,
+    value: 40,
     ctor: Arcadian
   }
 ];

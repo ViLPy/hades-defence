@@ -162,7 +162,7 @@ export class Director {
         const levelMin = [0, 4, 0];
 
         this.charonTime = 0;
-        const addedSouls = Math.max(1, Math.round(GlobalConfig.SOUL_VALUE_MULTIPLIER * gameState.value / 100));
+        const addedSouls = 1 + Math.round(GlobalConfig.SOUL_VALUE_MULTIPLIER * gameState.value / 100);
         playElevate();
         gameState.state.money += addedSouls;
         this.charonState = CharonStage.WAIT;
@@ -210,7 +210,7 @@ export class Director {
       const totalAmount = Math.ceil(Math.pow(GlobalConfig.INVASION_WAVE_MULTIPLIER, gameState.state.monsterInvasions));
       gameState.state.monsterInvasions++;
       for (let i = 0; i < totalAmount; i++) {
-        const enemy = new Enemy(32 * 16 + Math.random() * 20, Math.random() >= 0.5 ? 0 : 2, 18 + Math.random() * 8);
+        const enemy = new Enemy(32 * 16 + Math.random() * 20, Math.random() >= 0.5 ? 0 : 2, 18 + Math.random() * 10);
         gameState.enemies.push(enemy);
       }
     }

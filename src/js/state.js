@@ -115,8 +115,8 @@ class State {
 
     this.value = totalObjectValue + totalTilesValue;
     this.mood = totalObjectMood + totalTilesMood;
-    this.value -= Math.min(this.state.souls * GlobalConfig.SOUL_VALUE_DROP, 5000);
-    this.mood -= Math.min(this.state.souls * GlobalConfig.SOUL_MOOD_DROP, 5000);
+    this.value -= Math.min(this.state.souls * GlobalConfig.SOUL_VALUE_DROP, 3000);
+    this.mood -= Math.min(this.state.souls * GlobalConfig.SOUL_MOOD_DROP, 3000);
 
     if (this.mood < 0) {
       this.playerMaxHealth = 100 / (1 + (Math.abs(this.mood) / 100) * GlobalConfig.MOOD_HEALTH_MULTIPLIER);

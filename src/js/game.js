@@ -131,6 +131,8 @@ export class Game {
     });
 
     this.objectsPreview = Objects.map((obj, index) => createObject(obj, 30 + index * 40, 30, true));
+
+    gameSkeletons.skeletons = [];
   }
 
   handleCancel() {
@@ -405,7 +407,9 @@ export class Game {
 
         drawImage('flr-i' + tile.id + '-' + grade, x, y);
 
-        if (mx > x && mx < x + 16 && my > y && my < y + 16) {
+        const isSelected = this.selectedTileType === 'f' && this.selectedTile === tileIndex && this.selectedTileGrade === gradeIndex;
+
+        if (isSelected || (mx > x && mx < x + 16 && my > y && my < y + 16)) {
           this.hoverTile = tileIndex;
           this.hoverTileGrade = gradeIndex;
           this.hoverTileType = 'f';
@@ -432,7 +436,9 @@ export class Game {
 
         drawImage('wl-i' + tile.id + '-' + grade, x, y);
 
-        if (mx > x && mx < x + 16 && my > y && my < y + 16) {
+        const isSelected = this.selectedTileType === 'w' && this.selectedTile === tileIndex && this.selectedTileGrade === gradeIndex;
+
+        if (isSelected || (mx > x && mx < x + 16 && my > y && my < y + 16)) {
           this.hoverTile = tileIndex;
           this.hoverTileGrade = gradeIndex;
           this.hoverTileType = 'w';

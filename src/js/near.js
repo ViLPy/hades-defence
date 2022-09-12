@@ -1,8 +1,10 @@
 import {gameState} from './state';
 
+const BrowserLocalStorageKeyStore = window['nearApi']?.['keyStores']?.['BrowserLocalStorageKeyStore'];
+
 const config = {
   'networkId': 'testnet',
-  'keyStore': new window['nearApi']['keyStores']['BrowserLocalStorageKeyStore'](),
+  'keyStore': BrowserLocalStorageKeyStore ? new BrowserLocalStorageKeyStore() : undefined,
   'nodeUrl': 'https://rpc.testnet.near.org',
   'walletUrl': 'https://wallet.testnet.near.org',
   'helperUrl': 'https://helper.testnet.near.org',
@@ -15,29 +17,41 @@ let contract;
 export let isPremiumNear = false;
 
 export async function initNearWallet() {
-  near = await window['nearApi']['connect'](config);
-  wallet = new window['nearApi']['WalletConnection'](near, null);
-  contract = new window['nearApi']['Contract'](
-    wallet['account'](), // the account object that is connecting
-    'hades-dev.vilpy.testnet',
-    {
-      // name of contract you're connecting to
-      'viewMethods': ['get_state'], // view methods do not change state but usually return a value
-      'changeMethods': ['new', 'save_map', 'buy_premium'] // change methods modify state
-    }
-  );
-  isPremiumNear = (await getCurrentNearState())?.['premium_user'] ?? false;
+  try {
+    near = await window['nearApi']['connect'](config);
+    wallet = new window['nearApi']['WalletConnection'](near, null);
+    contract = new window['nearApi']['Contract'](
+      wallet['account'](), // the account object that is connecting
+      'hades-dev.vilpy.testnet',
+      {
+        // name of contract you're connecting to
+        'viewMethods': ['get_state'], // view methods do not change state but usually return a value
+        'changeMethods': ['new', 'save_map', 'buy_premium'] // change methods modify state
+      }
+    );
+    isPremiumNear = (await getCurrentNearState())?.['premium_user'] ?? false;
+  } catch (e) {
+    console.warn(e);
+  }
 }
 
 export async function loginWithNear() {
-  if (!isLoggedInWithNear()) {
-    await wallet?.['requestSignIn']('hades-dev.vilpy.testnet', 'Hades Defence');
+  try {
+    if (!isLoggedInWithNear()) {
+      await wallet?.['requestSignIn']('hades-dev.vilpy.testnet', 'Hades Defence');
+    }
+  } catch (e) {
+    console.warn(e);
   }
 }
 
 export function logoutNear() {
-  wallet?.['signOut']();
-  window.location.reload();
+  try {
+    wallet?.['signOut']();
+    window.location.reload();
+  } catch (e) {
+    console.warn(e);
+  }
 }
 
 export function isLoggedInWithNear() {

@@ -32,8 +32,12 @@ export function getMapDY(area) {
 }
 
 export function sortObject(objA, objB) {
-  if (objA.spr.x === objB.spr.x) return 0;
-  return objA.spr.x > objB.spr.x ? 1 : -1;
+  try {
+    if (objA.spr.x === objB.spr.x) return 0;
+    return objA.spr.x > objB.spr.x ? 1 : -1;
+  } catch (err) {
+    return 0;
+  }
 }
 
 export function sortDist(x, objA, objB) {

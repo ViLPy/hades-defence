@@ -145,7 +145,7 @@ export class Skeletons {
     this.skeletons = this.skeletons.filter((sk) => sk.hp > 0);
     const newLength = this.skeletons.length;
     for (let i = 0; i < init - newLength; i++) {
-      this.skeletonRecharges.push(10);
+      this.skeletonRecharges.push(50);
     }
 
     const maxSkeletons = this.upgradeLevel;
