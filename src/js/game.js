@@ -408,11 +408,15 @@ export class Game {
         drawImage('flr-i' + tile.id + '-' + grade, x, y);
 
         const isSelected = this.selectedTileType === 'f' && this.selectedTile === tileIndex && this.selectedTileGrade === gradeIndex;
+        const isOver = (mx > x && mx < x + 16 && my > y && my < y + 16);
 
-        if (isSelected || (mx > x && mx < x + 16 && my > y && my < y + 16)) {
+        if (isOver) {
           this.hoverTile = tileIndex;
           this.hoverTileGrade = gradeIndex;
           this.hoverTileType = 'f';
+        }
+
+        if (isSelected || isOver) {
           canvasCtx.strokeStyle = '#f00000';
           canvasCtx.beginPath();
           canvasCtx.rect(x - 2, y - 2, 20, 20);
@@ -437,11 +441,14 @@ export class Game {
         drawImage('wl-i' + tile.id + '-' + grade, x, y);
 
         const isSelected = this.selectedTileType === 'w' && this.selectedTile === tileIndex && this.selectedTileGrade === gradeIndex;
-
-        if (isSelected || (mx > x && mx < x + 16 && my > y && my < y + 16)) {
+        const isOver = (mx > x && mx < x + 16 && my > y && my < y + 16);
+        if (isOver) {
           this.hoverTile = tileIndex;
           this.hoverTileGrade = gradeIndex;
           this.hoverTileType = 'w';
+        }
+
+        if (isSelected || isOver) {
           canvasCtx.strokeStyle = '#f00000';
           canvasCtx.beginPath();
           canvasCtx.rect(x - 2, y - 2, 20, 20);
