@@ -19,8 +19,8 @@ function createCanvas(width, height) {
  * @return {HTMLCanvasElement}
  */
 export function colorPattern(name, targetName, fgColor, bgColor, alpha = 1) {
-  const fg = fgColor.replaceAll(/[^\d,]/g, '').split(',').map(n => +n);
-  const bg = bgColor ? bgColor.replaceAll(/[^\d,]/g, '').split(',').map(n => +n) : undefined;
+  const fg = fgColor.replace(/[^\d,]/g, '').split(',').map(n => +n);
+  const bg = bgColor ? bgColor.replace(/[^\d,]/g, '').split(',').map(n => +n) : undefined;
 
   const sprite = appResourceLoader.getImage(name);
   const img = sprite.img;
