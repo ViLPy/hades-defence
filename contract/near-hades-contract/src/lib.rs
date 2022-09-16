@@ -54,7 +54,7 @@ impl NearRawLedger {
     let account_id = env::signer_account_id();
     let state = self.records.get(&account_id);
     if state.is_none() {
-      env::panic_str("Can't save for uninitialized state");
+      env::panic_str("Can't save map for uninitialized state");
     }
 
     let unwrapped_state = state.unwrap();
@@ -70,24 +70,27 @@ impl NearRawLedger {
   }
 
   #[payable]
-  pub fn buy_premium(&mut self) -> UserState {
+  pub fn buy_premium(&mut self) {
     let account_id = env::signer_account_id();
     let is_premium = env::attached_deposit() >= PREMIUM_MIN;
-    let state = self.records.get(&account_id);
-    if state.is_none() {
-      env::panic_str("Can't save for uninitialized state");
+    let current_state = self.records.get(&account_id);
+    if current_state.is_none() {
+      let state = UserState {
+        last_saved_map: "".to_string(),
+        premium_user: is_premium
+      };
+
+      self.records.insert(&account_id, &state);
+    } else {
+      let unwrapped_state = current_state.unwrap();
+
+      let state = UserState {
+        premium_user: is_premium,
+        last_saved_map: unwrapped_state.last_saved_map
+      };
+
+      self.records.insert(&account_id, &state);
     }
-
-    let unwrapped_state = state.unwrap();
-
-    let state = UserState {
-      premium_user: is_premium,
-      last_saved_map: unwrapped_state.last_saved_map
-    };
-
-    self.records.insert(&account_id, &state);
-
-    return state;
   }
 
   pub fn get_state(&self, account_id: AccountId) -> Option<UserState> {
